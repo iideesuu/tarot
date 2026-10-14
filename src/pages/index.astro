@@ -1,0 +1,72 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro'
+import { displayCards as tarotCards } from '../data/display'
+import { spreadDefinitions } from '../data/spreads'
+
+const base = import.meta.env.BASE_URL
+const featuredCards = tarotCards.filter((card) => ['the-fool', 'the-moon', 'the-star'].includes(card.id))
+---
+<SiteLayout
+  title="莫里i的塔罗札记｜在牌面与内心之间"
+  description="探索 78 张塔罗牌，使用牌阵整理问题，也查阅每一张牌的正逆位含义。"
+>
+  <section class="hero section-shell">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span>一盏为你留着的灯</p>
+      <h1>把问题交给牌，<br /><em>把答案带回心里。</em></h1>
+      <p class="hero-intro">欢迎来到莫里i的塔罗札记。这里没有绝对的预言，只有一面温柔的镜子，帮你看见当下已经知道、却还没有说出口的事。</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href={`${base}draw/`}>开始一次占卜 <span>→</span></a>
+        <a class="text-link" href={`${base}cards/`}>先逛逛牌义百科 <span>↗</span></a>
+      </div>
+      <div class="hero-note"><span class="tiny-spark">✦</span> 78 张牌 · {spreadDefinitions.length} 种牌阵 · 一份写给自己的时间</div>
+    </div>
+    <div class="hero-art" aria-label="星空中的塔罗牌装饰图">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="moon-orb"><span>☾</span></div>
+      <div class="floating-card floating-card-back"><span>✦</span><small>MOON<br />NOTES</small></div>
+      <div class="floating-card floating-card-front"><span class="card-glyph">✧</span><strong>XVIII</strong><small>THE MOON</small></div>
+      <span class="art-star star-a">✦</span><span class="art-star star-b">✧</span><span class="art-star star-c">✦</span>
+    </div>
+  </section>
+
+  <section class="section-shell intention-grid">
+    <div class="section-heading">
+      <p class="eyebrow">从这里开始</p>
+      <h2>今天，你想问什么？</h2>
+    </div>
+    <div class="intention-cards">
+      <a class="intention-card intention-card-primary" href={`${base}draw/?topic=general&spread=single`}>
+        <span class="intention-icon">✦</span><span><strong>给我一张指引</strong><small>适合此刻的开放式提问</small></span><b>→</b>
+      </a>
+      <a class="intention-card" href={`${base}draw/?topic=love`}>
+        <span class="intention-icon">♡</span><span><strong>看看关系的流动</strong><small>关于爱与连接的三张牌</small></span><b>→</b>
+      </a>
+      <a class="intention-card" href={`${base}draw/?topic=career`}>
+        <span class="intention-icon">⌁</span><span><strong>理清工作的方向</strong><small>把选择摊开来再看一遍</small></span><b>→</b>
+      </a>
+    </div>
+  </section>
+
+  <section class="section-shell quiet-section">
+    <div class="section-heading split-heading">
+      <div><p class="eyebrow">牌面低语</p><h2>认识你的牌</h2></div>
+      <a class="text-link" href={`${base}cards/`}>查看全部 {tarotCards.length} 张 <span>↗</span></a>
+    </div>
+    <div class="featured-cards">
+      {featuredCards.map((card) => (
+        <a class="mini-card" href={`${base}cards/${card.id}/`}>
+          <div class={`mini-card-art ${card.arcana}`}><span>{card.symbol}</span><small>{card.numberLabel}</small></div>
+          <div><strong>{card.name}</strong><small>{card.nameEn}</small></div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="quote-band">
+    <div class="quote-mark">“</div>
+    <blockquote>塔罗不是替你决定，<br />它只是让你听见自己。</blockquote>
+    <p>— 莫里i</p>
+  </section>
+</SiteLayout>

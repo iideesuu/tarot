@@ -1,0 +1,17 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro'
+import DrawApp from '../components/DrawApp.vue'
+---
+<SiteLayout
+  title="开始占卜｜莫里i的塔罗札记"
+  description="选择一个牌阵，随机抽牌，或录入你现实中抽到的牌，得到一份结构化的塔罗参考解读。"
+>
+  <section class="page-intro section-shell narrow-shell">
+    <p class="eyebrow"><span class="eyebrow-line"></span>今日的牌面</p>
+    <h1>让问题有一个<br /><em>可以凝视的形状。</em></h1>
+    <p>先选一个牌阵和主题。你可以让牌替你随机出现，也可以把现实中已经抽到的牌录进来。</p>
+  </section>
+  <section class="section-shell app-shell">
+    <DrawApp client:load />
+  </section>
+</SiteLayout>

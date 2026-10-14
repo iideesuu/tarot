@@ -1,0 +1,7 @@
+services:
+  tarot:
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:4321:80"
+    restart: "no"

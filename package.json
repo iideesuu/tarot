@@ -1,0 +1,23 @@
+{
+  "name": "moli-tarot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node scripts/test-engine.mjs"
+  },
+  "dependencies": {
+    "@astrojs/vue": "7.0.3",
+    "astro": "7.3.8",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "typescript": "^5.7.0",
+    "vue-tsc": "^2.2.0"
+  }
+}

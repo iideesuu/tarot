@@ -1,0 +1,55 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = '莫里i的塔罗札记',
+  description = '用一副牌，整理此刻的心。'
+} = Astro.props
+const base = import.meta.env.BASE_URL
+const path = Astro.url.pathname
+const canonicalUrl = new URL(path, Astro.site)
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0c1024" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href={`${base}favicon.svg`} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="starfield" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href={base} aria-label="回到首页">
+          <span class="brand-mark">✦</span>
+          <span>
+            <strong>莫里i</strong>
+            <small>塔罗札记</small>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="主导航">
+          <a class:list={{ active: path === base || path === `${base}index.html` }} href={base}>首页</a>
+          <a class:list={{ active: path.includes('/draw') }} href={`${base}draw/`}>开始占卜</a>
+          <a class:list={{ active: path.includes('/cards') }} href={`${base}cards/`}>牌义百科</a>
+          <a class:list={{ active: path.includes('/guide') }} href={`${base}guide/`}>入门指南</a>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <span>✦ 莫里i的塔罗札记</span>
+        <span>给正在寻找答案的你</span>
+      </footer>
+    </div>
+  </body>
+</html>

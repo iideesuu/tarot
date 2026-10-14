@@ -1,0 +1,44 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import { displayCards as tarotCards } from '../../data/display'
+
+const base = import.meta.env.BASE_URL
+const majorArcana = tarotCards.filter((card) => card.arcana === 'major')
+const suits = [
+  { key: 'wands', name: '权杖', en: 'Wands', symbol: '✦', description: '火的意志、行动与创造' },
+  { key: 'cups', name: '圣杯', en: 'Cups', symbol: '♡', description: '水的情绪、关系与直觉' },
+  { key: 'swords', name: '宝剑', en: 'Swords', symbol: '⌁', description: '风的思想、选择与真相' },
+  { key: 'pentacles', name: '星币', en: 'Pentacles', symbol: '◇', description: '土的身体、资源与日常' }
+]
+---
+<SiteLayout title="牌义百科｜莫里i的塔罗札记" description="浏览 78 张塔罗牌的正位、逆位、关键词与主题解读。">
+  <section class="page-intro section-shell narrow-shell">
+    <p class="eyebrow"><span class="eyebrow-line"></span>牌义百科</p>
+    <h1>每一张牌，<br /><em>都是一扇窗。</em></h1>
+    <p>从大阿尔卡那的原型，到四个花色在生活里的回声。把牌当作语言，慢慢学会读懂它。</p>
+  </section>
+  <section class="section-shell card-library">
+    <div class="library-heading"><h2>大阿尔卡那</h2><span>22 张 · 从愚人到世界</span></div>
+    <div class="card-grid">
+      {majorArcana.map((card) => (
+        <a class="library-card" href={`${base}cards/${card.id}/`}>
+          <div class="library-card-art major"><span>{card.symbol}</span><small>{card.numberLabel}</small></div>
+          <div class="library-card-copy"><strong>{card.name}</strong><small>{card.nameEn}</small><p>{card.uprightKeywords.slice(0, 3).join(' · ')}</p></div>
+        </a>
+      ))}
+    </div>
+    {suits.map((suit) => (
+      <div class="suit-section">
+        <div class="library-heading"><h2>{suit.symbol} {suit.name}</h2><span>{suit.en} · {suit.description}</span></div>
+        <div class="card-grid minor-grid">
+          {tarotCards.filter((card) => card.suit === suit.key).map((card) => (
+            <a class="library-card" href={`${base}cards/${card.id}/`}>
+              <div class={`library-card-art ${suit.key}`}><span>{card.symbol}</span><small>{card.numberLabel}</small></div>
+              <div class="library-card-copy"><strong>{card.name}</strong><small>{card.nameEn}</small><p>{card.uprightKeywords.slice(0, 2).join(' · ')}</p></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</SiteLayout>
