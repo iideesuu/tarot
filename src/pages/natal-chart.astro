@@ -1,0 +1,17 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro'
+import AstrologyApp from '../components/AstrologyApp.vue'
+---
+<SiteLayout
+  title="本命星盘｜莫里i的塔罗札记"
+  description="输入出生资料，生成包含太阳、月亮、上升与十颗星体位置的本命星盘。"
+>
+  <section class="page-intro section-shell narrow-shell">
+    <p class="eyebrow">你的天空档案</p>
+    <h1>把出生那一刻的天空，<br /><em>交还给自己。</em></h1>
+    <p>填写出生日期、时间与地点，看看太阳、月亮、上升和其他星体如何共同写下你的内在地图。</p>
+  </section>
+  <section class="section-shell app-shell">
+    <AstrologyApp client:load />
+  </section>
+</SiteLayout>

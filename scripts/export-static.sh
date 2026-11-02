@@ -55,8 +55,8 @@ fi
 
 docker compose cp tarot:/usr/share/nginx/html/. "$staging_directory/"
 
-if [ ! -f "$staging_directory/index.html" ] || [ ! -f "$staging_directory/draw/index.html" ]; then
-  printf '%s\n' "导出失败：静态产物中缺少首页或占卜页面。" >&2
+if [ ! -f "$staging_directory/index.html" ] || [ ! -f "$staging_directory/draw/index.html" ] || [ ! -f "$staging_directory/natal-chart/index.html" ]; then
+  printf '%s\n' "导出失败：静态产物中缺少首页、占卜页面或星盘页面。" >&2
   exit 1
 fi
 

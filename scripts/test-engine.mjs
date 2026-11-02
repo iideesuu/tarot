@@ -8,7 +8,7 @@ import ts from 'typescript'
 // Compile only the domain modules into an ephemeral directory; no host runtime is needed.
 const temporary = await mkdtemp(join(tmpdir(), 'tarot-test-'))
 try {
-  for (const module of ['data/cards', 'data/display', 'data/spreads', 'domain/tarot']) {
+  for (const module of ['data/cards', 'data/display', 'data/spreads', 'domain/tarot', 'domain/astrology']) {
     const source = await readFile(`src/${module}.ts`, 'utf8')
     const output = ts.transpileModule(source, {
       compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 }
@@ -20,6 +20,7 @@ try {
   const { tarotCards } = await import(pathToFileURL(join(temporary, 'data/cards.mjs')))
   const { spreadDefinitions } = await import(pathToFileURL(join(temporary, 'data/spreads.mjs')))
   const { drawCards, interpretReading } = await import(pathToFileURL(join(temporary, 'domain/tarot.mjs')))
+  const { calculateNatalChart } = await import(pathToFileURL(join(temporary, 'domain/astrology.mjs')))
 
   assert.equal(tarotCards.length, 78)
   assert.equal(new Set(tarotCards.map(card => card.id)).size, 78)
@@ -57,7 +58,21 @@ try {
     assert.throws(() => interpretReading({ ...reading, cards: [] }))
     assert.throws(() => interpretReading({ ...reading, cards: reading.cards.map(item => ({ ...item, cardId: 'missing-card' })) }))
   }
-  console.log('PASS: 78-card content, secure draw invariants, orientation, spread validation, theme interpretation and position ordering')
+  const chart = calculateNatalChart({ date: '1994-09-18', time: '05:10', latitude: 30.67, longitude: 104.06, timezone: 8 })
+  assert.equal(chart.planets.length, 10)
+  assert.deepEqual(chart.planets.map((planet) => planet.id), ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'])
+  assert.ok(chart.planets.every((planet) => planet.longitude >= 0 && planet.longitude < 360))
+  assert.ok(chart.ascendant.sign.name)
+  assert.equal(chart.planets[0].sign.id, 'virgo')
+  assert.equal(chart.ascendant.sign.id, 'virgo')
+  assert.equal(chart.midheaven.sign.id, 'gemini')
+  const septemberChart = calculateNatalChart({ date: '2024-09-01', time: '12:00', latitude: 30.67, longitude: 104.06, timezone: 8 })
+  assert.equal(septemberChart.planets[0].sign.id, 'virgo')
+  assert.equal(chart.houses.length, 12)
+  assert.ok(chart.aspects.every((aspect) => aspect.orb <= 8))
+  assert.throws(() => calculateNatalChart({ date: '2024-02-30', time: '12:00', latitude: 0, longitude: 0, timezone: 0 }))
+  assert.throws(() => calculateNatalChart({ date: '2024-01-01', time: '12:00', latitude: 91, longitude: 0, timezone: 0 }))
+  console.log('PASS: 78-card content, secure draw invariants, orientation, spread validation, theme interpretation, position ordering and natal chart calculation')
 } finally {
   await rm(temporary, { recursive: true, force: true })
 }

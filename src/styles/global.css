@@ -1310,3 +1310,110 @@ hr {
 .detail-panel p > strong { color: var(--gold-soft); font-weight: 500; }
 .mode-switch button:disabled, .spread-option:disabled,
 .orientation-switch button:disabled { cursor: wait; opacity: .7; }
+
+/* Natal chart reading flow. */
+.astro-app { padding-bottom: 1rem; }
+.astro-setup, .astro-result { padding: clamp(1.25rem, 3vw, 2.3rem); border: 1px solid var(--line-soft); border-radius: 20px; background: linear-gradient(145deg, rgba(29, 32, 65, .84), rgba(15, 18, 39, .86)); box-shadow: var(--shadow); }
+.astro-setup-heading { max-width: 42rem; }
+.astro-setup-heading h2 { margin-top: .65rem; color: var(--gold-soft); font-size: clamp(1.45rem, 3vw, 2rem); }
+.astro-setup-heading > p:last-child { margin-top: .7rem; font-size: .82rem; line-height: 1.9; }
+.astro-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+.astro-field { display: grid; gap: .45rem; min-width: 0; }
+.astro-field-wide { grid-column: span 2; }
+.astro-field > span { color: var(--muted); font-size: .76rem; }
+.astro-field input, .astro-field select { width: 100%; min-height: 2.8rem; padding: .62rem .78rem; border: 1px solid var(--line-soft); border-radius: 7px; outline: 0; color: var(--ink); background: #0d1025; font-size: .82rem; transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease); }
+.astro-field input:focus, .astro-field select:focus { border-color: var(--gold-deep); box-shadow: 0 0 0 3px rgba(230, 189, 99, .1); }
+.astro-field input::placeholder { color: var(--dim); }
+.astro-field option { color: var(--ink); background: var(--night); }
+.astro-city-field { align-content: start; }
+.astro-city-readout { display: flex; min-height: 2.8rem; align-items: center; gap: .65rem; padding: .62rem .78rem; border: 1px solid rgba(230, 189, 99, .28); border-radius: 7px; background: linear-gradient(90deg, rgba(230, 189, 99, .08), rgba(13, 16, 37, .92)); }
+.astro-city-marker { display: grid; width: 1.55rem; height: 1.55rem; flex: 0 0 1.55rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--gold); font-size: .95rem; }
+.astro-city-readout > div { min-width: 0; display: grid; gap: .18rem; }
+.astro-city-readout strong { color: var(--gold-soft); font-family: var(--font-display); font-size: .86rem; font-weight: 500; }
+.astro-city-readout small { color: var(--dim); font-size: .65rem; line-height: 1.4; }
+.astro-city-readout > small { margin-left: auto; }
+.astro-quick-field { grid-column: span 2; }
+.astro-quick-cities { display: flex; flex-wrap: wrap; gap: .45rem; }
+.astro-city-chip { min-height: 2.25rem; padding: .4rem .7rem; border: 1px solid var(--line-soft); border-radius: 999px; color: var(--muted); background: rgba(8, 9, 23, .34); font: inherit; font-size: .72rem; cursor: pointer; transition: border-color 180ms var(--ease), color 180ms var(--ease), background 180ms var(--ease), transform 180ms var(--ease); }
+.astro-city-chip:hover { border-color: var(--gold-deep); color: var(--gold-soft); transform: translateY(-1px); }
+.astro-city-chip.active { border-color: var(--gold); color: var(--void); background: var(--gold); }
+.astro-field-hint { color: var(--dim); font-size: .65rem; line-height: 1.6; }
+.astro-submit { width: 100%; margin-top: 1.7rem; min-height: 3.25rem; }
+.astro-submit:disabled { cursor: wait; opacity: .7; transform: none; }
+.astro-submit b { font-size: 1rem; font-weight: 400; }
+.astro-form-note { margin-top: .8rem; color: var(--dim); font-size: .7rem; text-align: center; }
+.astro-error { margin-top: 1rem; padding: .65rem .8rem; border: 1px solid rgba(239, 170, 168, .3); border-radius: 7px; color: var(--danger); background: rgba(239, 170, 168, .05); font-size: .78rem; }
+.astro-spinner { display: inline-block; width: .85rem; height: .85rem; border: 1px solid rgba(8, 9, 23, .3); border-top-color: var(--void); border-radius: 50%; animation: spin 800ms linear infinite; }
+.astro-result-header { display: flex; align-items: start; justify-content: space-between; gap: 1rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--line-soft); }
+.astro-result-header h2 { margin-top: .65rem; color: var(--gold-soft); font-size: clamp(1.55rem, 3vw, 2.1rem); }
+.astro-result-header > div > p:last-child { margin-top: .55rem; color: var(--dim); font-size: .75rem; }
+.astro-main-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(18rem, .8fr); gap: 1.5rem; margin-top: 1.7rem; }
+.astro-wheel-panel { min-width: 0; padding: 1rem; border: 1px solid var(--line-soft); border-radius: 14px; background: rgba(8, 9, 23, .25); }
+.astro-wheel-wrap { width: min(100%, 36rem); margin: 0 auto; }
+.astro-wheel { display: block; width: 100%; height: auto; overflow: visible; }
+.astro-zodiac-symbol { fill: var(--gold-soft); font-family: Georgia, serif; font-size: 20px; }
+.astro-planet-glyph { fill: var(--ink); font-family: Georgia, serif; font-size: 14px; }
+.astro-axis-label { fill: var(--gold); font-size: 9px; letter-spacing: .14em; }
+.astro-axis-value { fill: var(--muted); font-family: var(--font-body); font-size: 8px; }
+.astro-wheel-caption { margin-top: .35rem; color: var(--dim); font-size: .65rem; text-align: center; }
+.astro-summary { display: grid; align-content: start; gap: 1rem; }
+.astro-big-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; }
+.astro-big-three article { display: grid; min-height: 7rem; align-content: center; justify-items: center; gap: .2rem; padding: .7rem .35rem; border: 1px solid var(--line-soft); border-radius: 10px; background: rgba(230, 189, 99, .045); }
+.astro-big-three span { color: var(--gold); font-family: Georgia, serif; font-size: 1.45rem; }
+.astro-big-three article:nth-child(3) span { font-family: var(--font-body); font-size: .75rem; letter-spacing: .1em; }
+.astro-big-three small { color: var(--dim); font-size: .64rem; }
+.astro-big-three strong { color: var(--ink); font-family: var(--font-display); font-size: .88rem; font-weight: 500; }
+.astro-big-three em { color: var(--gold); font-size: .65rem; font-style: normal; }
+.astro-axis-card, .astro-aspects { padding: 1.1rem; border: 1px solid var(--line-soft); border-radius: 11px; background: rgba(26, 29, 56, .62); }
+.astro-axis-card > div, .astro-aspects > div { display: flex; align-items: baseline; justify-content: space-between; gap: .7rem; padding: .6rem 0; border-bottom: 1px solid rgba(233, 231, 245, .07); }
+.astro-axis-card > div:last-child, .astro-aspects > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.astro-axis-card > div:first-of-type, .astro-aspects > div:first-of-type { margin-top: .55rem; }
+.astro-axis-card span, .astro-aspects span { color: var(--muted); font-size: .72rem; }
+.astro-axis-card strong { color: var(--gold-soft); font-size: .76rem; font-weight: 400; }
+.astro-aspects small { color: var(--gold); font-size: .65rem; }
+.astro-placements { margin-top: 2rem; padding-top: 1.7rem; border-top: 1px solid var(--line-soft); }
+.astro-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+.astro-section-heading h3 { margin-top: .55rem; color: var(--gold-soft); font-size: 1.35rem; }
+.astro-section-heading > span { color: var(--dim); font-size: .68rem; }
+.astro-placement-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; margin-top: 1.1rem; }
+.astro-placement { position: relative; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: .7rem; padding: .9rem; border: 1px solid var(--line-soft); border-radius: 10px; background: rgba(8, 9, 23, .22); }
+.astro-placement-icon { display: grid; width: 2.25rem; height: 2.25rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--gold-soft); font-family: Georgia, serif; font-size: 1.25rem; }
+.astro-placement strong { display: block; color: var(--ink); font-family: var(--font-display); font-size: .9rem; font-weight: 500; }
+.astro-placement small { display: block; margin-top: .12rem; color: var(--gold); font-size: .65rem; }
+.astro-placement p { margin-top: .45rem; color: var(--dim); font-size: .72rem; line-height: 1.75; }
+.astro-placement > i { position: absolute; top: .7rem; right: .75rem; color: var(--lavender); font-size: .75rem; font-style: normal; }
+.astro-reading { display: grid; grid-template-columns: 1.25fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+.astro-reading article { padding: 1.4rem; border: 1px solid var(--line-soft); border-radius: 12px; background: rgba(26, 29, 56, .7); }
+.astro-reading h3 { margin-top: .65rem; color: var(--gold-soft); font-size: 1.2rem; }
+.astro-reading article > p:not(.eyebrow) { margin-top: .8rem; color: var(--muted); font-size: .82rem; line-height: 1.95; }
+.astro-reading-points { display: grid; gap: .45rem; margin-top: 1rem; }
+.astro-reading-points span { color: var(--lavender); font-size: .72rem; line-height: 1.8; }
+.astro-reading-note { background: linear-gradient(145deg, rgba(230, 189, 99, .075), rgba(26, 25, 53, .65)) !important; }
+.astro-reading-note ul { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: .8rem; line-height: 1.9; }
+.astro-reading-note li + li { margin-top: .55rem; }
+.astro-reading-note li::marker { color: var(--gold); }
+.astro-disclaimer { margin-top: 1.2rem; color: var(--dim); font-size: .66rem; text-align: center; }
+@media (max-width: 960px) {
+  .astro-main-grid { grid-template-columns: 1fr; }
+  .astro-wheel-wrap { width: min(100%, 34rem); }
+  .astro-summary { grid-template-columns: 1fr 1fr; align-items: start; }
+  .astro-big-three { grid-column: 1 / -1; }
+}
+@media (max-width: 780px) {
+  .astro-form-grid { grid-template-columns: 1fr 1fr; }
+  .astro-field-wide { grid-column: span 2; }
+  .astro-quick-field { grid-column: span 2; }
+  .astro-summary, .astro-reading { grid-template-columns: 1fr; }
+  .astro-placement-grid { grid-template-columns: 1fr; }
+  .astro-result-header { flex-wrap: wrap; }
+}
+@media (max-width: 520px) {
+  .astro-setup, .astro-result { padding: 1.1rem; }
+  .astro-form-grid { grid-template-columns: 1fr; }
+  .astro-field-wide { grid-column: auto; }
+  .astro-quick-field { grid-column: auto; }
+  .astro-city-readout { align-items: flex-start; }
+  .astro-big-three article { min-height: 6rem; }
+  .astro-section-heading { align-items: start; flex-direction: column; gap: .25rem; }
+  .astro-wheel-panel { padding: .45rem; }
+}

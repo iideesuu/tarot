@@ -39,6 +39,7 @@ const canonicalUrl = new URL(path, Astro.site)
         <nav class="main-nav" aria-label="主导航">
           <a class:list={{ active: path === base || path === `${base}index.html` }} href={base}>首页</a>
           <a class:list={{ active: path.includes('/draw') }} href={`${base}draw/`}>开始占卜</a>
+          <a class:list={{ active: path.includes('/natal-chart') }} href={`${base}natal-chart/`}>本命星盘</a>
           <a class:list={{ active: path.includes('/cards') }} href={`${base}cards/`}>牌义百科</a>
           <a class:list={{ active: path.includes('/guide') }} href={`${base}guide/`}>入门指南</a>
         </nav>
